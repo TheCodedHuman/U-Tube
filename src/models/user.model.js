@@ -19,7 +19,7 @@ const userSchema = new Schema({
         lowercase: true,
         trim: true
     },
-    fullname: {
+    fullName: {
         type: String,
         required: true,
         trim: true,
@@ -32,10 +32,10 @@ const userSchema = new Schema({
     coverImage: {
         type: String
     },
-    watchHistory: {
+    watchHistory: [{
         type: Schema.Types.ObjectId,
         ref: "Video"
-    },
+    }],
     password: {
         type: String,
         required: [true, "Password is required  "] // challenge -> here comes bcrypt and jwt token bearing
@@ -87,5 +87,5 @@ userSchema.methods.generateRefreshToken = function() {
     )
 }
 
-export const User = mongoose.models("User", userSchema)
+export const User = mongoose.model("User", userSchema)
 
